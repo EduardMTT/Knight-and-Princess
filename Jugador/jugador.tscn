@@ -483,7 +483,7 @@ wait_time = 0.3
 [connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]
 [connection signal="area_shape_exited" from="HitBox" to="." method="_on_hit_box_area_shape_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuando_saltoanimacion_termine"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque2acabe"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque1acabe"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque3acabe"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque2acabe"]
 [connection signal="timeout" from="TiempoDaño" to="." method="_on_tiempo_daño_timeout"]

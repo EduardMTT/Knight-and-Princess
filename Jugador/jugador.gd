@@ -162,7 +162,8 @@ func _on_hit_box_area_shape_entered(area_rid, area, area_shape_index, local_shap
 	if area.is_in_group("AtaqueEnemigo"):
 		Tiempo.start()
 		Golpe=true
-		cambiar_visibilidad_nodos(false, false, false, false, false, false, false, false, true)
+		if Atacando == false:
+			cambiar_visibilidad_nodos(false, false, false, false, false, false, false, false, true)
 
 
 

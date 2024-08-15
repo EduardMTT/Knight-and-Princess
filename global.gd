@@ -1,0 +1,15 @@
+extends Node
+var escena_a_cargar
+var VidaJugador = 100
+var FuerzaJugador = 10
+var DañoPig = 1
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+func ObtenerVidaJugador(vida):
+	VidaJugador=vida
+func cambio(ruta):
+	escena_a_cargar = ruta
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass

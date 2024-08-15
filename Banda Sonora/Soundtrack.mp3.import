@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0ofkittyhyg8"
+path="res://.godot/imported/Soundtrack.mp3-f1c62eca5c90d971724515ae45b6e4eb.mp3str"
+
+[deps]
+
+source_file="res://Banda Sonora/Soundtrack.mp3"
+dest_files=["res://.godot/imported/Soundtrack.mp3-f1c62eca5c90d971724515ae45b6e4eb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

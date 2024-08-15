@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://e76g5pbfnycl"]
+
+[ext_resource type="Script" path="res://Teletransportador.gd" id="1_fmyuy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3uhof"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pcn18"]
+
+[node name="Teletransportador" type="Node2D"]
+script = ExtResource("1_fmyuy")
+
+[node name="PuntoA" type="Area2D" parent="."]
+position = Vector2(262, 101)
+metadata/_edit_group_ = true
+
+[node name="ColisionA" type="CollisionShape2D" parent="PuntoA"]
+position = Vector2(1, 4)
+shape = SubResource("CircleShape2D_3uhof")
+
+[node name="PuntoB" type="Area2D" parent="."]
+position = Vector2(778, 111)
+metadata/_edit_group_ = true
+
+[node name="ColisionB" type="CollisionShape2D" parent="PuntoB"]
+shape = SubResource("CircleShape2D_pcn18")
+
+[connection signal="body_entered" from="PuntoA" to="." method="_on_punto_a_body_entered"]

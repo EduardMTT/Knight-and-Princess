@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://ls37u4i3xru0"]
+
+[ext_resource type="Script" path="res://PantalladeCarga.gd" id="1_vhn3s"]
+
+[node name="PantalladeCarga" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vhn3s")
+
+[node name="Fondo" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 646.0
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 297.0
+offset_top = 300.0
+offset_right = -278.0
+offset_bottom = -321.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextoCarga" type="Label" parent="."]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 260.0
+offset_right = 592.0
+offset_bottom = 283.0
+
+[connection signal="value_changed" from="MarginContainer/ProgressBar" to="." method="_on_progress_bar_value_changed"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3vftiqvikocx"]
+
+[ext_resource type="Script" path="res://Puerta.gd" id="1_afgto"]
+[ext_resource type="Texture2D" uid="uid://uhtnvtmymr5l" path="res://Azulejos/Objects/door4.png" id="2_mc5ry"]
+[ext_resource type="Texture2D" uid="uid://cyfclnyq1thg" path="res://Azulejos/Objects/door3.png" id="3_di82t"]
+[ext_resource type="AudioStream" uid="uid://d35d8blbb5fha" path="res://Banda Sonora/Puerta abierta.mp3" id="4_rlndr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ro1i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mc5ry")
+}],
+"loop": true,
+"name": &"Abierta",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_di82t")
+}],
+"loop": true,
+"name": &"Cerrada",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqbi8"]
+size = Vector2(101, 189)
+
+[node name="Door" type="StaticBody2D"]
+position = Vector2(688, 159)
+script = ExtResource("1_afgto")
+
+[node name="Animacion" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1.52588e-05)
+scale = Vector2(3.4375, 3.92188)
+sprite_frames = SubResource("SpriteFrames_0ro1i")
+animation = &"Cerrada"
+frame_progress = 0.60149
+
+[node name="Colision" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 11.5)
+shape = SubResource("RectangleShape2D_tqbi8")
+
+[node name="EfectoPuerta" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rlndr")
+volume_db = 6.559

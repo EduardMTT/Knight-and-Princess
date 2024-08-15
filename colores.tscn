@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://lgmc3r5bu3rm"]
+
+[ext_resource type="Script" path="res://Changecolors.gd" id="1_k8vnb"]
+[ext_resource type="Shader" path="res://Opacidad.gdshader" id="1_lyddq"]
+[ext_resource type="Texture2D" uid="uid://bxsbqadryyube" path="res://Sobrelapantalla/5.png" id="2_k6qvv"]
+[ext_resource type="Texture2D" uid="uid://ckftw2dkgshlo" path="res://Sobrelapantalla/2.png" id="4_0473y"]
+[ext_resource type="Texture2D" uid="uid://b5t402acn2ng0" path="res://Sobrelapantalla/17.png" id="6_8dgld"]
+[ext_resource type="Texture2D" uid="uid://cwvqqp3a86k57" path="res://Sobrelapantalla/3.png" id="6_hna1u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p03x4"]
+shader = ExtResource("1_lyddq")
+shader_parameter/opacidad = 0.343
+
+[node name="Colores" type="Node2D"]
+script = ExtResource("1_k8vnb")
+
+[node name="Rojo" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_p03x4")
+offset_right = 1800.0
+offset_bottom = 1200.0
+texture = ExtResource("2_k6qvv")
+expand_mode = 1
+
+[node name="Morado" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_p03x4")
+offset_right = 1800.0
+offset_bottom = 1200.0
+texture = ExtResource("4_0473y")
+expand_mode = 1
+
+[node name="Verde" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_p03x4")
+offset_right = 1800.0
+offset_bottom = 1200.0
+texture = ExtResource("6_hna1u")
+expand_mode = 1
+
+[node name="Azul" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_p03x4")
+offset_right = 1800.0
+offset_bottom = 1200.0
+texture = ExtResource("6_8dgld")
+expand_mode = 1

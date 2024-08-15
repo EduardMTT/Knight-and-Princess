@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce7a4adkmuwrq"]
+
+[ext_resource type="Script" path="res://EfectosCamara.gd" id="1_febfm"]
+
+[node name="Camara" type="Camera2D"]
+script = ExtResource("1_febfm")

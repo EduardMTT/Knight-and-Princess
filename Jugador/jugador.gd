@@ -119,7 +119,7 @@ func _physics_process(delta):
 					Animacion.play("Correr")
 			Orientacion(false,false,false,false,false,false,false,false, false)
 			if Bandera == 1:
-				COLISIONA1.position.x += 36.5
+				COLISIONA1.position.x += 36.0
 				COLISIONA2.position.x += 43.0
 				COLISIONA3.position.x += 56.0
 				Bandera = 0

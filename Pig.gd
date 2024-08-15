@@ -3,7 +3,11 @@ extends CharacterBody2D
 @onready var Colision = $Colision
 @onready var ColisionHit = $HitBox/ColisionHit
 @onready var EffectoA = $AttackEffect
+@onready var EffectoH = $HitEffect
+@onready var EffectoD = $DeadEffect
 @onready var ColisionAtaque = $Ataque/Ataque1Colision
+@onready var raycast_derecha = $Derecha
+@onready var raycast_izquierda = $Izquierda
 var Posicion = Vector2()
 var direccion: String = 'Izquierda'
 var bandera: bool 
@@ -17,6 +21,14 @@ func _ready():
 	Anima.play("Corriendo")
 func _physics_process(delta):
 	if Vida>=1:
+		if not raycast_derecha.is_colliding() and direccion == 'Derecha':
+			Anima.flip_h = false
+			Posicion.x = -VelocidadPig
+			direccion = 'Izquierda'
+		elif not raycast_izquierda.is_colliding() and direccion == 'Izquierda':
+			Anima.flip_h = true
+			Posicion.x = VelocidadPig
+			direccion = 'Derecha'
 		if Atacando == false:
 			if direccion == 'Derecha' and bandera == false:
 				Colision.position.x = Anima.position.x-0.7
@@ -51,6 +63,7 @@ func _physics_process(delta):
 		ColisionHit.disabled = true
 		if Anima.animation != "Muerto":
 			Anima.play("Muerto")
+			EffectoD.play()
 		ContadorT += delta
 		print(ContadorT)
 		if ContadorT >= 0.6:
@@ -90,6 +103,7 @@ func _on_hit_box_area_shape_entered(area_rid, area, area_shape_index, local_shap
 			ColisionAtaque.disabled = true
 			set_physics_process(false)
 			Anima.play("Hit")
+			EffectoH.play()
 			Vida -= GLOBAL.FuerzaJugador
 
 

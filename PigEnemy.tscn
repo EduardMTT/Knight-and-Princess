@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dqw3gpjg72dr"]
+[gd_scene load_steps=32 format=3 uid="uid://dqw3gpjg72dr"]
 
 [ext_resource type="Script" path="res://Pig.gd" id="1_x587p"]
 [ext_resource type="Texture2D" uid="uid://v1ftg0jndt07" path="res://Enemigos/GreenPig/Attack (34x28).png" id="2_2vplq"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c8ivkvi0vxd6f" path="res://Enemigos/GreenPig/Hit (34x28).png" id="5_k06pi"]
 [ext_resource type="AudioStream" uid="uid://dn8bj6v7vvr8s" path="res://Enemigos/SonidoSalto.mp3" id="5_swn6p"]
 [ext_resource type="Texture2D" uid="uid://dcn80iaqm0cti" path="res://Enemigos/GreenPig/Dead (34x28).png" id="6_r5br0"]
+[ext_resource type="AudioStream" uid="uid://cm2yyid0t1d45" path="res://Enemigos/SonidoGolpe.mp3" id="8_qy7xh"]
+[ext_resource type="AudioStream" uid="uid://dt2x7oao41gqi" path="res://Enemigos/SonidoMuerto.mp3" id="9_u0dqe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7a7s"]
 atlas = ExtResource("2_2vplq")
@@ -184,7 +186,6 @@ sprite_frames = SubResource("SpriteFrames_fyuy6")
 animation = &"Muerto"
 
 [node name="HitBox" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="ColisionHit" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(2.28571, 6)
@@ -206,6 +207,22 @@ shape = SubResource("RectangleShape2D_jjdft")
 [node name="AttackEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_swn6p")
 volume_db = 0.937
+pitch_scale = 0.42
+
+[node name="HitEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qy7xh")
+volume_db = 0.937
+
+[node name="DeadEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_u0dqe")
+volume_db = 0.937
+pitch_scale = 1.14
+
+[node name="Derecha" type="RayCast2D" parent="."]
+target_position = Vector2(12, 20)
+
+[node name="Izquierda" type="RayCast2D" parent="."]
+target_position = Vector2(-12, 20)
 
 [connection signal="animation_finished" from="Animacion" to="." method="_on_animacion_animation_finished"]
 [connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]

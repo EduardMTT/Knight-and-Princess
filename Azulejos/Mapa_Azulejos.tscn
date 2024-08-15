@@ -1,4 +1,4 @@
-[gd_scene load_steps=231 format=3 uid="uid://b5m6rx1c4ieiy"]
+[gd_scene load_steps=233 format=3 uid="uid://b5m6rx1c4ieiy"]
 
 [ext_resource type="Texture2D" uid="uid://dkfevx5jyiydw" path="res://Azulejos/Tiles/tile19.png" id="1_l7msi"]
 [ext_resource type="Texture2D" uid="uid://mnnc6mq7it8f" path="res://Azulejos/Tiles/tile20.png" id="2_7hee8"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cxo5agpi6d04f" path="res://Azulejos/Tiles/tile171.png" id="19_5ns6o"]
 [ext_resource type="Texture2D" uid="uid://bav0xuykv8aak" path="res://Azulejos/Tiles/tile172.png" id="20_vlocq"]
 [ext_resource type="Texture2D" uid="uid://c8abrgwcvna2y" path="res://Azulejos/Tiles/tile2.png" id="21_k821t"]
+[ext_resource type="PackedScene" uid="uid://dqw3gpjg72dr" path="res://PigEnemy.tscn" id="21_ojr82"]
 [ext_resource type="Texture2D" uid="uid://cfsrwl8mgobux" path="res://Azulejos/Tiles/tile3.png" id="22_3wkae"]
 [ext_resource type="Texture2D" uid="uid://sbepr3i5mn2y" path="res://Azulejos/Tiles/tile4.png" id="23_gqrbi"]
 [ext_resource type="Texture2D" uid="uid://ccwyax4tpraxl" path="res://Azulejos/Tiles/tile5.png" id="24_84jr6"]
@@ -260,6 +261,9 @@ texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i13j6"]
+scenes/1/scene = ExtResource("21_ojr82")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhaoj"]
 texture = ExtResource("21_k821t")
@@ -1096,6 +1100,7 @@ sources/42 = SubResource("TileSetAtlasSource_qa56v")
 sources/43 = SubResource("TileSetAtlasSource_3p3yu")
 sources/64 = SubResource("TileSetAtlasSource_fkuyp")
 sources/85 = SubResource("TileSetAtlasSource_4vt23")
+sources/117 = SubResource("TileSetScenesCollectionSource_i13j6")
 
 [node name="Tilemap" type="TileMap"]
 texture_filter = 1

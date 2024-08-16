@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brm5wfa7e3u5u"
+path="res://.godot/imported/SonidoDolor.mp3-34a444b8c27bbb3f0bd16cfb4840bcdc.mp3str"
+
+[deps]
+
+source_file="res://Banda Sonora/SonidoDolor.mp3"
+dest_files=["res://.godot/imported/SonidoDolor.mp3-34a444b8c27bbb3f0bd16cfb4840bcdc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

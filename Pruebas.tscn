@@ -11,7 +11,7 @@ position = Vector2(329, 152)
 layer_0/tile_data = PackedInt32Array(196602, 7, 0, 196603, 7, 0, 196604, 7, 0, 196605, 7, 0, 196606, 7, 0, 196607, 7, 0, 131072, 7, 0, 131073, 7, 0, 131074, 7, 0, 131075, 7, 0, 131076, 7, 0, 131077, 7, 0, 131078, 7, 0, 131079, 7, 0, 131080, 7, 0, 131081, 7, 0, 131082, 7, 0, 131083, 7, 0, 131084, 7, 0, 131085, 7, 0, 131086, 7, 0)
 
 [node name="Pig" parent="." instance=ExtResource("2_0mmpm")]
-position = Vector2(395, 44)
+position = Vector2(371, -118)
 
 [node name="Jugador" parent="." instance=ExtResource("3_eqexg")]
 position = Vector2(-201, -12)

@@ -13,13 +13,10 @@ func _on_area_entered(area):
 		print("detecta area")
 		if estado==false :
 			Anima.play("Activada")
-			print ("activada")
 			estado = true
 		else:
 			Anima.play("Desactivada")
-			print ("desactivada")
 			estado = false
 
 func puerta():
 	return estado  # Devuelve el estado actual de la palanca
-

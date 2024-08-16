@@ -173,7 +173,7 @@ size = Vector2(14, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjdft"]
 size = Vector2(8.28572, 18.1429)
 
-[node name="Pig" type="CharacterBody2D"]
+[node name="Pig" type="CharacterBody2D" groups=["Pausables"]]
 light_mask = 0
 scale = Vector2(3.5, 3.5)
 script = ExtResource("1_x587p")
@@ -219,10 +219,13 @@ volume_db = 0.937
 pitch_scale = 1.14
 
 [node name="Derecha" type="RayCast2D" parent="."]
-target_position = Vector2(12, 20)
+target_position = Vector2(9, 20)
 
 [node name="Izquierda" type="RayCast2D" parent="."]
-target_position = Vector2(-12, 20)
+target_position = Vector2(-9, 20)
+
+[node name="TiempoAtacando" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="animation_finished" from="Animacion" to="." method="_on_animacion_animation_finished"]
 [connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]
@@ -230,3 +233,4 @@ target_position = Vector2(-12, 20)
 [connection signal="body_shape_entered" from="Ataque" to="." method="_on_ataque_body_shape_entered"]
 [connection signal="body_shape_exited" from="Ataque" to="." method="_on_ataque_body_shape_exited"]
 [connection signal="finished" from="AttackEffect" to="." method="_on_attack_effect_finished"]
+[connection signal="timeout" from="TiempoAtacando" to="." method="_on_tiempo_atacando_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dpstfpd4o4afb"]
+[gd_scene load_steps=28 format=3 uid="uid://dpstfpd4o4afb"]
 
 [ext_resource type="Texture2D" uid="uid://px0ntc2e3jfr" path="res://Jugador/Sprites/Idle.png" id="1_1v8l4"]
 [ext_resource type="Script" path="res://Jugador/jugador.gd" id="1_qyvuo"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cw6pv22cx8f11" path="res://Jugador/Sprites/Attack 2.png" id="7_wdkl4"]
 [ext_resource type="Texture2D" uid="uid://m7e4vov4v5xe" path="res://Jugador/Sprites/Attack 3.png" id="8_pstts"]
 [ext_resource type="AudioStream" uid="uid://du1wj4k3qgu7e" path="res://Banda Sonora/Salto.mp3" id="10_b53t6"]
+[ext_resource type="AudioStream" uid="uid://brm5wfa7e3u5u" path="res://Banda Sonora/SonidoDolor.mp3" id="10_gcoq2"]
+[ext_resource type="AudioStream" uid="uid://c0ptaeatuncq" path="res://Banda Sonora/sword-hit-7160.mp3" id="11_v71k2"]
 [ext_resource type="Texture2D" uid="uid://di45axrnyiwoc" path="res://Jugador/Sprites/Hurt.png" id="11_xwxpr"]
 [ext_resource type="Texture2D" uid="uid://cr6kkh3yttbtl" path="res://Jugador/Heart.png" id="12_dultu"]
 
@@ -166,6 +168,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dolor:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_8yv2h"]
@@ -331,6 +345,18 @@ tracks/11/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Dolor:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_sor3i"]
 resource_name = "Salto"
@@ -378,7 +404,6 @@ position = Vector2(0, 23)
 shape = SubResource("CapsuleShape2D_mb0ib")
 
 [node name="Colision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 23)
 shape = SubResource("CapsuleShape2D_mb0ib")
 
@@ -454,6 +479,15 @@ hframes = 4
 position = Vector2(28.4987, 11.7048)
 shape = SubResource("RectangleShape2D_wn8th")
 
+[node name="Dolor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gcoq2")
+volume_db = 0.792
+pitch_scale = 0.8
+
+[node name="Sword" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_v71k2")
+volume_db = -13.117
+
 [node name="Salto" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_b53t6")
 volume_db = 0.937
@@ -483,10 +517,18 @@ texture = ExtResource("12_dultu")
 [node name="TiempoDaño" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="TiempoRebote" type="Timer" parent="."]
+wait_time = 0.001
+
 [connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]
 [connection signal="area_shape_exited" from="HitBox" to="." method="_on_hit_box_area_shape_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuando_saltoanimacion_termine"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque1acabe"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque3acabe"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandomuerteacabe"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque2acabe"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque3acabe"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque1acabe"]
+[connection signal="body_entered" from="Ataque1/ataque1" to="." method="_on_ataque_1_body_entered"]
+[connection signal="body_entered" from="Ataque2/ataque2" to="." method="_on_ataque_2_body_entered"]
+[connection signal="body_entered" from="Ataque3/ataque3" to="." method="_on_ataque_3_body_entered"]
 [connection signal="timeout" from="TiempoDaño" to="." method="_on_tiempo_daño_timeout"]
+[connection signal="timeout" from="TiempoRebote" to="." method="_on_tiempo_rebote_timeout"]

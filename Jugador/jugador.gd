@@ -16,16 +16,22 @@ const Fuerza_de_salto:float = -550.0
 @onready var Animacion = $AnimationPlayer
 @onready var COLISIONA1= $Ataque1/ataque1/Ataque1colision
 @onready var salto= $Salto
+@onready var dolor= $Dolor
+@onready var Espada= $Sword
 @onready var Golpe = false
 @onready var COLISIONA2= $Ataque2/ataque2/Ataque2colision
 @onready var COLISIONA3= $Ataque3/ataque3/Ataque3colision
 @onready var barradevida = $CanvasLayer/ProgressBar
 @onready var Tiempo = $TiempoDaño
+@onready var TiempoR = $TiempoRebote
+@onready var ColisionH = $HitBox/Colision
+@onready var Colision = $Colision
 var Posicion = Vector2()
 var Atacando:bool = false
 var Saltando:bool = false
 var N_Ataque:int = 1
 var Gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
+var ContadorT =0
 func _ready():
 	barradevida.value = GLOBAL.VidaJugador
 	COLISIONA1.disabled = true
@@ -87,61 +93,73 @@ func atacar():
 	if N_Ataque > 3:
 		N_Ataque = 1
 func _physics_process(delta):
-	# Aplicar gravedad si no esta en el suelo
-	if not is_on_floor():
-		Posicion.y += Gravedad * delta
-	if Atacando == false:
-		if is_on_floor():
-			Saltando = false
-			if Input.is_action_just_pressed("Salto"):
-				if Golpe == false:
-					cambiar_visibilidad_nodos(false,true,false,false,false,false,false,false, false)
-					Animacion.play("Salto")
-					salto.play()
-				Posicion.y = Fuerza_de_salto
-				Saltando = true
-		if Input.is_action_pressed("Izquierda"):
-			if Saltando == false:
-				if Golpe == false:
-					cambiar_visibilidad_nodos(false,false,true,false,false,false,false,false, false)
-					Animacion.play("Correr")
-			Orientacion(true,true,true,true,true,true,true,true,true)
-			if Bandera == 0:
-				COLISIONA1.position.x -= 36.0
-				COLISIONA2.position.x -= 43.0
-				COLISIONA3.position.x -= 56.0
-				Bandera = 1
-			Posicion.x = -Velocidad
-		elif Input.is_action_pressed("Derecha"):
-			if Saltando == false:
-				if Golpe == false:
-					cambiar_visibilidad_nodos(false,false,true,false,false,false,false,false, false)
-					Animacion.play("Correr")
-			Orientacion(false,false,false,false,false,false,false,false, false)
-			if Bandera == 1:
-				COLISIONA1.position.x += 36.0
-				COLISIONA2.position.x += 43.0
-				COLISIONA3.position.x += 56.0
-				Bandera = 0
-			Posicion.x = Velocidad
-		else:
-			if Golpe == false:
+	if barradevida.value>0:
+		# Aplicar gravedad si no esta en el suelo
+		if not is_on_floor():
+			Posicion.y += Gravedad * delta
+		if Atacando == false:
+			if is_on_floor():
+				Saltando = false
+				if Input.is_action_just_pressed("Salto"):
+					if Golpe == false:
+						cambiar_visibilidad_nodos(false,true,false,false,false,false,false,false, false)
+						Animacion.play("Salto")
+						salto.play()
+					Posicion.y = Fuerza_de_salto
+					Saltando = true
+			if Input.is_action_pressed("Izquierda"):
 				if Saltando == false:
-					cambiar_visibilidad_nodos(true,false,false,false,false,false,false,false, false)
-					COLISIONA1.disabled = true
-					COLISIONA2.disabled = true
-					COLISIONA3.disabled = true
-				else:
-					cambiar_visibilidad_nodos(false,true,false,false,false,false,false,false, false)
-			Posicion.x=0
-	if Input.is_action_just_pressed("Ataque"):
-		atacar()
-	set_velocity(Posicion)
-	move_and_slide()
-	if is_on_ceiling():
-		Posicion.y = 0  # Detener el movimiento vertical hacia arriba
-
-
+					if Golpe == false:
+						cambiar_visibilidad_nodos(false,false,true,false,false,false,false,false, false)
+						Animacion.play("Correr")
+				Orientacion(true,true,true,true,true,true,true,true,true)
+				if Bandera == 0:
+					COLISIONA1.position.x -= 36.0
+					COLISIONA2.position.x -= 43.0
+					COLISIONA3.position.x -= 56.0
+					Bandera = 1
+				Posicion.x = -Velocidad
+			elif Input.is_action_pressed("Derecha"):
+				if Saltando == false:
+					if Golpe == false:
+						cambiar_visibilidad_nodos(false,false,true,false,false,false,false,false, false)
+						Animacion.play("Correr")
+				Orientacion(false,false,false,false,false,false,false,false, false)
+				if Bandera == 1:
+					COLISIONA1.position.x += 36.0
+					COLISIONA2.position.x += 43.0
+					COLISIONA3.position.x += 56.0
+					Bandera = 0
+				Posicion.x = Velocidad
+			else:
+				if Golpe == false:
+					if Saltando == false:
+						cambiar_visibilidad_nodos(true,false,false,false,false,false,false,false, false)
+						COLISIONA1.disabled = true
+						COLISIONA2.disabled = true
+						COLISIONA3.disabled = true
+					else:
+						cambiar_visibilidad_nodos(false,true,false,false,false,false,false,false, false)
+				Posicion.x=0
+		if Input.is_action_just_pressed("Ataque"):
+			atacar()
+		set_velocity(Posicion)
+		move_and_slide()
+		if is_on_ceiling():
+			Posicion.y = 0  # Detener el movimiento vertical hacia arriba
+	else:
+		Colision.disabled = true
+		COLISIONA1.disabled = true
+		COLISIONA2.disabled = true
+		COLISIONA3.disabled = true
+		ColisionH.disabled = true
+		cambiar_visibilidad_nodos(false,false,false,true,false,false,false,false,false)
+		Animacion.play("Muerte")
+		ContadorT += delta
+		if ContadorT >= 1.0:
+			Animacion.pause()
+			get_tree().paused = true
+			set_physics_process(false)
 
 func Cuando_saltoanimacion_termine(Salto):
 	Animacion.pause()
@@ -157,6 +175,7 @@ func Cuandoataque2acabe(Ataque2):
 
 func Cuandoataque3acabe(Ataque3):
 	Atacando = false
+	
 
 func _on_hit_box_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.is_in_group("AtaqueEnemigo"):
@@ -177,5 +196,32 @@ func _on_hit_box_area_shape_exited(area_rid, area, area_shape_index, local_shape
 
 
 func _on_tiempo_daño_timeout():
-	GLOBAL.VidaJugador -= GLOBAL.DañoPig
 	barradevida.value=GLOBAL.VidaJugador
+
+
+func _on_ataque_1_body_entered(body):
+	if body.is_in_group("Paredes"):
+		TiempoR.start()
+		Espada.play()
+
+
+func _on_ataque_2_body_entered(body):
+	if body.is_in_group("Paredes"):
+		TiempoR.start()
+		Espada.play()
+
+
+func _on_ataque_3_body_entered(body):
+	if body.is_in_group("Paredes"):
+		TiempoR.start()
+		Espada.play()
+
+var SumatoriaTiempo =0
+func _on_tiempo_rebote_timeout():
+	SumatoriaTiempo+=1
+	if Bandera == 1:
+		Posicion.x += Velocidad + GLOBAL.FuerzaJugador
+	elif Bandera == 0:
+		Posicion.x -= Velocidad+ GLOBAL.FuerzaJugador
+	if SumatoriaTiempo >=10:
+		TiempoR.stop()

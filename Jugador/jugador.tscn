@@ -517,18 +517,14 @@ texture = ExtResource("12_dultu")
 [node name="TiempoDaño" type="Timer" parent="."]
 wait_time = 0.3
 
-[node name="TiempoRebote" type="Timer" parent="."]
-wait_time = 0.001
-
 [connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]
 [connection signal="area_shape_exited" from="HitBox" to="." method="_on_hit_box_area_shape_exited"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuando_saltoanimacion_termine"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandomuerteacabe"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque2acabe"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuando_saltoanimacion_termine"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque3acabe"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="Cuandoataque1acabe"]
 [connection signal="body_entered" from="Ataque1/ataque1" to="." method="_on_ataque_1_body_entered"]
 [connection signal="body_entered" from="Ataque2/ataque2" to="." method="_on_ataque_2_body_entered"]
 [connection signal="body_entered" from="Ataque3/ataque3" to="." method="_on_ataque_3_body_entered"]
 [connection signal="timeout" from="TiempoDaño" to="." method="_on_tiempo_daño_timeout"]
-[connection signal="timeout" from="TiempoRebote" to="." method="_on_tiempo_rebote_timeout"]

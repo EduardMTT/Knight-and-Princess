@@ -23,7 +23,6 @@ const Fuerza_de_salto:float = -550.0
 @onready var COLISIONA3= $Ataque3/ataque3/Ataque3colision
 @onready var barradevida = $CanvasLayer/ProgressBar
 @onready var Tiempo = $TiempoDaño
-@onready var TiempoR = $TiempoRebote
 @onready var ColisionH = $HitBox/Colision
 @onready var Colision = $Colision
 var Posicion = Vector2()
@@ -201,27 +200,26 @@ func _on_tiempo_daño_timeout():
 
 func _on_ataque_1_body_entered(body):
 	if body.is_in_group("Paredes"):
-		TiempoR.start()
+		if Bandera == 1:
+			Posicion.x += Velocidad + GLOBAL.FuerzaJugador
+		elif Bandera == 0:
+			Posicion.x -= Velocidad+ GLOBAL.FuerzaJugador
 		Espada.play()
 
 
 func _on_ataque_2_body_entered(body):
 	if body.is_in_group("Paredes"):
-		TiempoR.start()
+		if Bandera == 1:
+			Posicion.x += Velocidad + GLOBAL.FuerzaJugador
+		elif Bandera == 0:
+			Posicion.x -= Velocidad+ GLOBAL.FuerzaJugador
 		Espada.play()
 
 
 func _on_ataque_3_body_entered(body):
 	if body.is_in_group("Paredes"):
-		TiempoR.start()
+		if Bandera == 1:
+			Posicion.x += Velocidad + GLOBAL.FuerzaJugador
+		elif Bandera == 0:
+			Posicion.x -= Velocidad+ GLOBAL.FuerzaJugador
 		Espada.play()
-
-var SumatoriaTiempo =0
-func _on_tiempo_rebote_timeout():
-	SumatoriaTiempo+=1
-	if Bandera == 1:
-		Posicion.x += Velocidad + GLOBAL.FuerzaJugador
-	elif Bandera == 0:
-		Posicion.x -= Velocidad+ GLOBAL.FuerzaJugador
-	if SumatoriaTiempo >=10:
-		TiempoR.stop()
